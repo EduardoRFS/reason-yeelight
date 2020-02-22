@@ -1,10 +1,3 @@
-(executable (name YeelightApp)
-    (modules (:standard \ YeelightBinPesyModules))
-    (public_name YeelightApp.exe) (libraries yeelight.bin.pesy-modules)
-    (flags -open YeelightBinPesyModules))
-(library (public_name yeelight.bin.pesy-modules)
-    (name YeelightBinPesyModules) (modules YeelightBinPesyModules)
-    (libraries yeelight.library))
-(rule
-    (with-stdout-to YeelightBinPesyModules.re
-        (run echo "module Library = YeelightLibrary;")))
+(executable (name YeelightApp) (modules (:standard))
+    (public_name YeelightApp.exe)
+    (libraries yeelight.lib base integers color yojson))

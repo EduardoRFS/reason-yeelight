@@ -5,49 +5,18 @@
   "esy": {
     "build": "refmterr dune build -p #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
-    "release": {
-      "releasedBinaries": [
-        "YeelightApp.exe"
-      ]
-    },
-    "buildEnv": {
-      "ODOC_SYNTAX": "re"
-    }
+    "release": { "releasedBinaries": [ "YeelightApp.exe" ] },
+    "buildEnv": { "ODOC_SYNTAX": "re" }
   },
   "buildDirs": {
-    "test": {
+    "lib": {
       "imports": [
-        "Library = require('yeelight/library')",
-        "Rely = require('rely/lib')"
-      ],
-      "flags": [
-        "-linkall",
-        "-g",
-        "-w",
-        "-9"
-      ]
-    },
-    "testExe": {
-      "imports": [
-        "Test = require('yeelight/test')"
-      ],
-      "bin": {
-        "RunYeelightTests.exe": "RunYeelightTests.re"
-      }
-    },
-    "library": {
-      "imports": [
-        "Console = require('console/lib')",
-        "Pastel = require('pastel/lib')"
+        "Console = require('console/lib')", "Pastel = require('pastel/lib')"
       ]
     },
     "bin": {
-      "imports": [
-        "Library = require('yeelight/library')"
-      ],
-      "bin": {
-        "YeelightApp.exe": "YeelightApp.re"
-      }
+      "require": [ "yeelight/lib", "base", "integers", "color", "yojson" ],
+      "bin": { "YeelightApp.exe": "YeelightApp.re" }
     }
   },
   "scripts": {
@@ -57,13 +26,17 @@
     "doc-path": "esy echo #{self.target_dir}/default/_doc/_html/index.html"
   },
   "dependencies": {
+    "@esy-ocaml/reason": "*",
+    "@opam/base": "v0.13.0",
+    "@opam/color": "0.2.0",
     "@opam/dune": "*",
+    "@opam/integers": "0.3.0",
+    "@opam/yojson": "1.7.0",
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
     "@reason-native/rely": "*",
-    "@esy-ocaml/reason": "*",
-    "refmterr": "*",
-    "ocaml": "~4.7.0"
+    "ocaml": "~4.7.0",
+    "refmterr": "*"
   },
   "devDependencies": {
     "@opam/merlin": "*",

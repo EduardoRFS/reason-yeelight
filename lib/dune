@@ -1,0 +1,11 @@
+(library (name YeelightLib) (public_name yeelight.lib)
+    (modules (:standard \ YeelightLibPesyModules))
+    (libraries yeelight.lib.pesy-modules)
+    (flags -open YeelightLibPesyModules))
+(library (public_name yeelight.lib.pesy-modules)
+    (name YeelightLibPesyModules) (modules YeelightLibPesyModules)
+    (libraries console.lib pastel.lib))
+(rule
+    (with-stdout-to YeelightLibPesyModules.re
+        (run echo  "module Console = Console;\
+                  \nmodule Pastel = Pastel;")))
